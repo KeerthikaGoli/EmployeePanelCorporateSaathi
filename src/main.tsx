@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles.css';
 import MainLayout from '../layout/MainLayout';
-import EmployeeDashboard from '../pages/Dashboard';
+import EmployeeDashboard from '../pages/dashboard';
+import TasksApp from '../pages/tasks';
+import ServicesApp from '../pages/services';
+import LeaderboardApp from '../pages/leaderboard';
 import { ViewType, Theme } from '../App';
 
 const AppRoot: React.FC = () => {
@@ -25,7 +28,10 @@ const AppRoot: React.FC = () => {
       setTheme={setTheme}
     >
       {currentView === 'dashboard' && <EmployeeDashboard />}
-      {currentView !== 'dashboard' && (
+      {currentView === 'tasks' && <TasksApp />}
+      {currentView === 'services' && <ServicesApp />}
+      {currentView === 'leaderboard' && <LeaderboardApp />}
+      {currentView !== 'dashboard' && currentView !== 'tasks' && currentView !== 'services' && currentView !== 'leaderboard' && (
         <div className="text-gray-700 dark:text-gray-200">{currentView} page coming soon...</div>
       )}
     </MainLayout>

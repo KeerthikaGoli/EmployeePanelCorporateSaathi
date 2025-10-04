@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { ViewType } from '../App';
-import { DashboardIcon, ProjectIcon, LeaveIcon, AttendanceIcon, LeaderboardIcon, SettingsIcon, XIcon, UserCircleIcon } from '../icons/Icons';
+import { DashboardIcon, ProjectIcon, LeaveIcon, AttendanceIcon, LeaderboardIcon, SettingsIcon, XIcon, UserCircleIcon, ServicesIcon } from '../icons/Icons';
 
 interface SidebarProps {
   currentView: ViewType;
@@ -14,6 +14,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentView, setCurrentView, isOpen, 
   const menuItems = [
     { id: 'dashboard', label: 'Dashboard', icon: <DashboardIcon /> },
     { id: 'tasks', label: 'Tasks', icon: <ProjectIcon /> },
+    { id: 'services', label: 'Services', icon: <ServicesIcon /> },
     { id: 'attendance', label: 'Attendance', icon: <AttendanceIcon /> },
     { id: 'leave', label: 'Leave', icon: <LeaveIcon /> },
     { id: 'profile', label: 'Profile', icon: <UserCircleIcon /> },
