@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { ViewType } from '../App';
-import { DashboardIcon, ProjectIcon, LeaveIcon, AttendanceIcon, LeaderboardIcon, SettingsIcon, XIcon, UserCircleIcon, ServicesIcon } from '../icons/Icons';
+import { DashboardIcon, ProjectIcon, LeaveIcon, AttendanceIcon, LeaderboardIcon, SettingsIcon, XIcon, UserCircleIcon, ServicesIcon, EmailIcon, NotificationIcon } from '../icons/Icons';
 
 interface SidebarProps {
   currentView: ViewType;
@@ -19,8 +19,10 @@ const Sidebar: React.FC<SidebarProps> = ({ currentView, setCurrentView, isOpen, 
     { id: 'leave', label: 'Leave', icon: <LeaveIcon /> },
     { id: 'profile', label: 'Profile', icon: <UserCircleIcon /> },
     { id: 'leaderboard', label: 'Leaderboard', icon: <LeaderboardIcon /> },
+    { id: 'email', label: 'Email', icon: <EmailIcon /> },
+    { id: 'announcements', label: 'Announcements', icon: <NotificationIcon /> },
   ];
-
+  
   const additionalModules: { id: ViewType, label: string, icon: React.ReactElement }[] = [];
 
   const NavLink = ({ id, label, icon }: { id: ViewType, label: string, icon: React.ReactElement }) => (

@@ -14,6 +14,7 @@ export type ViewType =
   | 'payroll'
   | 'reports'
   | 'audit'
+  | 'announcements'
   | 'settings';
 
 export type Theme = 'light' | 'dark' | 'system';
