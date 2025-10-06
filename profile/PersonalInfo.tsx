@@ -4,6 +4,7 @@ const PersonalInfo: React.FC = () => {
   const [isEditing, setIsEditing] = useState(false);
   
   const initialData = {
+    username: 'alex.j',
     firstName: 'Alex',
     lastName: 'Johnson',
     email: 'alex.j@company.com',
@@ -70,7 +71,7 @@ const PersonalInfo: React.FC = () => {
               name={key}
               value={(isEditing ? draftData : data as any)[key]} 
               onChange={handleChange}
-              readOnly={!isEditing}
+              readOnly={!isEditing || key === 'username'}
               className={`w-full p-3 border rounded-lg transition-all ${
                 isEditing
                   ? 'border-blue-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-blue-500 focus:border-blue-500'

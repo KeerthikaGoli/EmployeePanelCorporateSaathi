@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { UserIcon, BriefcaseIcon, StarIcon } from '../icons/Icons'; 
+import SecuritySettings from '../settings/SecuritySettings';
 import PersonalInfo from './PersonalInfo';
 import EmploymentDetails from './EmploymentDetails';
 import SkillsAchievements from './SkillsAchievements';
 
-type ProfileTab = 'personal' | 'employment' | 'skills';
+type ProfileTab = 'personal' | 'employment' | 'skills' | 'security';
 
 interface ProfileViewProps {
 }
@@ -16,6 +17,7 @@ const ProfileView: React.FC<ProfileViewProps> = () => {
     { id: 'personal' as ProfileTab, label: 'Personal Information', icon: <UserIcon className="w-5 h-5" /> },
     { id: 'employment' as ProfileTab, label: 'Employment Details', icon: <BriefcaseIcon className="w-5 h-5" /> },
     { id: 'skills' as ProfileTab, label: 'Skills / Achievements', icon: <StarIcon className="w-5 h-5" /> },
+    { id: 'security' as ProfileTab, label: 'Security', icon: <UserIcon className="w-5 h-5" /> },
   ];
 
   const renderActiveTabContent = () => {
@@ -26,6 +28,8 @@ const ProfileView: React.FC<ProfileViewProps> = () => {
         return <EmploymentDetails />;
       case 'skills':
         return <SkillsAchievements />;
+      case 'security':
+        return <SecuritySettings />;
       default:
         return <PersonalInfo />;
     }

@@ -12,6 +12,10 @@ export const mockTasks: Task[] = [
       avatar: 'https://picsum.photos/seed/user1/100/100',
       email: 'sarah.j@company.com'
     },
+    participants: [
+      { name: 'Sarah Johnson', avatar: 'https://picsum.photos/seed/user1/100/100', email: 'sarah.j@company.com' },
+      { name: 'John Doe', avatar: 'https://picsum.photos/seed/user2/100/100', email: 'john.d@company.com' }
+    ],
     dueDate: new Date(2025, 9, 15),
     createdDate: new Date(2025, 9, 1),
     tags: ['Backend', 'Security', 'Authentication'],
@@ -33,6 +37,9 @@ export const mockTasks: Task[] = [
     status: 'review',
     priority: 'medium',
     assignee: { name: 'Mike Chen', avatar: 'https://picsum.photos/seed/user3/100/100', email: 'mike.c@company.com' },
+    participants: [
+      { name: 'Mike Chen', avatar: 'https://picsum.photos/seed/user3/100/100', email: 'mike.c@company.com' }
+    ],
     dueDate: new Date(2025, 9, 10),
     createdDate: new Date(2025, 8, 28),
     tags: ['Design', 'Frontend', 'UI/UX'],
@@ -49,6 +56,10 @@ export const mockTasks: Task[] = [
     status: 'todo',
     priority: 'urgent',
     assignee: { name: 'Emily Rodriguez', avatar: 'https://picsum.photos/seed/user4/100/100', email: 'emily.r@company.com' },
+    participants: [
+      { name: 'Emily Rodriguez', avatar: 'https://picsum.photos/seed/user4/100/100', email: 'emily.r@company.com' },
+      { name: 'Admin User', avatar: 'https://picsum.photos/seed/admin/100/100', email: 'admin@company.com' }
+    ],
     dueDate: new Date(2025, 9, 8),
     createdDate: new Date(2025, 9, 2),
     tags: ['Database', 'Performance', 'Backend'],

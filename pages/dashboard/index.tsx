@@ -332,9 +332,8 @@ const EmployeeDashboard: React.FC = () => {
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Quick Actions</h2>
             <div className="space-y-2">
-              <button onClick={() => setShowTaskModal(true)} className="w-full p-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition text-sm flex items-center justify-center gap-2"><PlusIcon className="w-4 h-4" />Create New Task</button>
-              <button onClick={() => setShowMeetingModal(true)} className="w-full p-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-900 dark:text-white rounded-lg font-medium transition text-sm flex items-center justify-center gap-2"><CalendarIcon className="w-4 h-4" />Schedule Meeting</button>
-              <button onClick={() => setShowCalendarModal(true)} className="w-full p-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-900 dark:text-white rounded-lg font-medium transition text-sm flex items-center justify-center gap-2"><ClockIcon className="w-4 h-4" />View Calendar</button>
+              <button onClick={() => setShowMeetingModal(true)} className="w-full p-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition text-sm flex items-center justify-center gap-2 shadow focus:ring-2 focus:ring-blue-400"><CalendarIcon className="w-4 h-4" />Schedule Meeting</button>
+              <button onClick={() => setShowCalendarModal(true)} className="w-full p-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-semibold transition text-sm flex items-center justify-center gap-2 shadow focus:ring-2 focus:ring-purple-400"><ClockIcon className="w-4 h-4" />View Calendar</button>
             </div>
           </div>
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
@@ -359,53 +358,7 @@ const EmployeeDashboard: React.FC = () => {
         </div>
       </div>
 
-      {showTaskModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl max-w-sm w-full">
-            <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white">Create New Task</h3>
-              <button onClick={() => setShowTaskModal(false)} className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
-                <XIcon className="w-5 h-5" />
-              </button>
-            </div>
-            <form onSubmit={handleCreateTask} className="p-4 space-y-3">
-              <div>
-                <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Task Title</label>
-                <input name="title" type="text" required className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Enter task title" />
-              </div>
-              <div>
-                <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Description</label>
-                <textarea name="description" required className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Enter task description" rows={2} />
-              </div>
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Project</label>
-                  <input name="project" type="text" required className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Project" />
-                </div>
-                <div>
-                  <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Priority</label>
-                  <select name="priority" defaultValue="medium" className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                    <option value="low">Low</option>
-                    <option value="medium">Medium</option>
-                    <option value="high">High</option>
-                  </select>
-                </div>
-              </div>
-              <div>
-                <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Deadline</label>
-                <input name="deadline" type="date" required className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
-              </div>
-              <div className="flex gap-2 pt-2">
-                <button type="button" onClick={() => setShowTaskModal(false)} className="flex-1 px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition">Cancel</button>
-                <button type="submit" className="flex-1 px-3 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center justify-center gap-1">
-                  <SaveIcon className="w-4 h-4" />
-                  Create
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
+      {/* Create Task removed as per requirement */}
 
       {showMeetingModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">

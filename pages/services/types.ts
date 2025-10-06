@@ -8,6 +8,7 @@ export interface ServiceFile {
   size: string;
   url: string;
   type: 'document' | 'image' | 'video' | 'other';
+  uploadedBy: 'client' | 'employee';
 }
 
 export interface ServiceComment {
@@ -30,6 +31,11 @@ export interface Service {
     avatar: string;
     email: string;
   };
+  participants?: Array<{
+    name: string;
+    avatar: string;
+    email: string;
+  }>;
   client: {
     name: string;
     company: string;

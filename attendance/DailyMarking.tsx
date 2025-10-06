@@ -17,8 +17,8 @@ const DailyMarking: React.FC = () => {
     return (
         <div className="space-y-6">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Daily Attendance Punch</h2>
-            <div className="p-6 bg-blue-50 dark:bg-blue-900/50 rounded-xl shadow-md flex flex-col items-center justify-center space-y-4">
-                <ClockIcon className="w-12 h-12 text-blue-600 dark:text-blue-400 animate-pulse" />
+            <div className="p-6 bg-blue-50 dark:bg-gray-800 rounded-xl shadow-md flex flex-col items-center justify-center space-y-4 border border-transparent dark:border-gray-700">
+                <ClockIcon className="w-12 h-12 text-blue-600 dark:text-blue-300 animate-pulse" />
                 <p className="text-5xl font-extrabold text-gray-900 dark:text-white">{new Date().toLocaleTimeString()}</p>
                 <p className="text-lg font-medium text-gray-600 dark:text-gray-300">{new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
                 

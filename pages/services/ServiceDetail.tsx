@@ -160,22 +160,54 @@ const ServiceDetail: React.FC<Props> = ({ service, onClose, onUpdate }) => {
               {service.files.length > 0 && (
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Attachments ({service.files.length})</h3>
-                  <div className="space-y-2">
-                    {service.files.map((file) => (
-                      <div key={file.id} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-                        <div className="flex items-center gap-3">
-                          <PaperclipIcon className="w-5 h-5 text-gray-500" />
-                          <div>
-                            <div className="font-medium text-gray-900 dark:text-white">{file.name}</div>
-                            <div className="text-sm text-gray-500 dark:text-gray-400">{file.size}</div>
-                          </div>
+                  <div className="space-y-4">
+                    {/* Client Uploaded */}
+                    {service.files.some(f => f.uploadedBy === 'client') && (
+                      <div>
+                        <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Uploaded by Client</h4>
+                        <div className="space-y-2">
+                          {service.files.filter(f => f.uploadedBy === 'client').map((file) => (
+                            <div key={file.id} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+                              <div className="flex items-center gap-3">
+                                <PaperclipIcon className="w-5 h-5 text-gray-500" />
+                                <div>
+                                  <div className="font-medium text-gray-900 dark:text-white">{file.name}</div>
+                                  <div className="text-sm text-gray-500 dark:text-gray-400">{file.size}</div>
+                                </div>
+                              </div>
+                              <a href={file.url || '#'} download className="flex items-center gap-1 px-3 py-1 text-sm text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors">
+                                <DownloadIcon className="w-4 h-4" />
+                                Download
+                              </a>
+                            </div>
+                          ))}
                         </div>
-                        <button className="flex items-center gap-1 px-3 py-1 text-sm text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors">
-                          <DownloadIcon className="w-4 h-4" />
-                          Download
-                        </button>
                       </div>
-                    ))}
+                    )}
+
+                    {/* Employee Uploaded */}
+                    {service.files.some(f => f.uploadedBy === 'employee') && (
+                      <div>
+                        <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Uploaded by Team</h4>
+                        <div className="space-y-2">
+                          {service.files.filter(f => f.uploadedBy === 'employee').map((file) => (
+                            <div key={file.id} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+                              <div className="flex items-center gap-3">
+                                <PaperclipIcon className="w-5 h-5 text-gray-500" />
+                                <div>
+                                  <div className="font-medium text-gray-900 dark:text-white">{file.name}</div>
+                                  <div className="text-sm text-gray-500 dark:text-gray-400">{file.size}</div>
+                                </div>
+                              </div>
+                              <a href={file.url || '#'} download className="flex items-center gap-1 px-3 py-1 text-sm text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors">
+                                <DownloadIcon className="w-4 h-4" />
+                                Download
+                              </a>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               )}

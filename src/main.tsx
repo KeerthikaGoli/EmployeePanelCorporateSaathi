@@ -17,7 +17,7 @@ import AnnouncementsView  from '../announcements/AnnouncementsView';
 const AppRoot: React.FC = () => {
   const [currentView, setCurrentView] = useState<ViewType>('dashboard');
   const [searchQuery, setSearchQuery] = useState('');
-  const [theme, setTheme] = useState<Theme>('dark');
+  const [theme, setTheme] = useState<Theme>('light');
 
   useEffect(() => {
     const root = document.documentElement;

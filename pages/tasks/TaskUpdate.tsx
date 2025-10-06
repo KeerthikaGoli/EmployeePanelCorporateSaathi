@@ -11,9 +11,10 @@ type Props = {
 const TaskUpdate: React.FC<Props> = ({ task, onSave, onCancel }) => {
   const [status, setStatus] = useState<TaskStatus>(task.status);
   const [progress, setProgress] = useState<number>(task.progress);
-  const [priority, setPriority] = useState<TaskPriority>(task.priority);
-  const [actualHours, setActualHours] = useState<number>(task.actualHours);
+  // Restrict updates to status, progress, and notes only
   const [notes, setNotes] = useState<string>('');
+  const [newFiles, setNewFiles] = useState<File[]>([]);
+  const [filePickers, setFilePickers] = useState<number[]>([0]);
 
   const getStatusColor = (status: TaskStatus) => {
     switch (status) {
@@ -34,12 +35,18 @@ const TaskUpdate: React.FC<Props> = ({ task, onSave, onCancel }) => {
   };
 
   const handleSave = () => {
+    const uploadedFiles = (newFiles ? Array.from(newFiles) : []).map((f, idx) => ({
+      id: `tf-${Date.now()}-${idx}`,
+      name: f.name,
+      size: `${Math.ceil(f.size / 1024)} KB`,
+      url: '#'
+    }));
+
     const updatedTask = {
       ...task,
       status,
       progress,
-      priority,
-      actualHours,
+      files: [...task.files, ...uploadedFiles],
       // Add a comment if notes are provided
       comments: notes.trim() ? [
         ...task.comments,
@@ -94,9 +101,8 @@ const TaskUpdate: React.FC<Props> = ({ task, onSave, onCancel }) => {
             </div>
           </div>
 
-          {/* Update Form */}
+          {/* Update Form: Status and Progress only */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {/* Status and Priority */}
             <div className="space-y-3">
               <div>
                 <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Status</label>
@@ -111,23 +117,8 @@ const TaskUpdate: React.FC<Props> = ({ task, onSave, onCancel }) => {
                   <option value="completed">Completed</option>
                 </select>
               </div>
-
-              <div>
-                <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Priority</label>
-                <select 
-                  value={priority} 
-                  onChange={(e) => setPriority(e.target.value as TaskPriority)} 
-                  className="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                >
-                  <option value="low">Low</option>
-                  <option value="medium">Medium</option>
-                  <option value="high">High</option>
-                  <option value="urgent">Urgent</option>
-                </select>
-              </div>
             </div>
 
-            {/* Progress and Hours */}
             <div className="space-y-3">
               <div>
                 <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -147,33 +138,46 @@ const TaskUpdate: React.FC<Props> = ({ task, onSave, onCancel }) => {
                   <span>100%</span>
                 </div>
               </div>
-
-              <div>
-                <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
-                  Hours: {actualHours}h / {task.estimatedHours}h
-                </label>
-                <input 
-                  type="number" 
-                  min={0} 
-                  max={task.estimatedHours * 2} 
-                  value={actualHours} 
-                  onChange={(e) => setActualHours(parseInt(e.target.value) || 0)} 
-                  className="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 bg-white dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5 mt-1">
-                  <div 
-                    className="bg-green-600 h-1.5 rounded-full transition-all duration-300" 
-                    style={{ width: `${Math.min((actualHours / task.estimatedHours) * 100, 100)}%` }}
-                  ></div>
-                </div>
-              </div>
             </div>
+          </div>
+
+          {/* Upload Documents */}
+          <div>
+            <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
+              Attach Documents
+            </label>
+            <div className="space-y-2">
+              {filePickers.map((pickerId, idx) => (
+                <input
+                  key={pickerId}
+                  type="file"
+                  multiple
+                  onChange={(e) => {
+                    const files = e.target.files ? Array.from(e.target.files) : [];
+                    if (files.length > 0) {
+                      setNewFiles((prev) => [...prev, ...files]);
+                      if (idx === filePickers.length - 1) {
+                        setFilePickers((prev) => [...prev, prev.length]);
+                      }
+                    }
+                  }}
+                  className="block w-full text-sm text-gray-700 dark:text-gray-300 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                />
+              ))}
+            </div>
+            {newFiles.length > 0 && (
+              <ul className="mt-2 text-xs text-gray-600 dark:text-gray-400 list-disc pl-4">
+                {newFiles.map((f, i) => (
+                  <li key={`${f.name}-${i}`}>{f.name}</li>
+                ))}
+              </ul>
+            )}
           </div>
 
           {/* Notes */}
           <div>
             <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
-              Update Notes (Optional)
+              Comment (Optional)
             </label>
             <textarea
               value={notes}

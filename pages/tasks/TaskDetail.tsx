@@ -11,6 +11,7 @@ type Props = {
 const TaskDetail: React.FC<Props> = ({ task, onClose, onUpdate }) => {
   const [showComments, setShowComments] = useState(false);
   const [newComment, setNewComment] = useState('');
+  const [newFiles, setNewFiles] = useState<FileList | null>(null);
 
   const getStatusColor = (status: TaskStatus) => {
     switch (status) {
@@ -124,15 +125,29 @@ const TaskDetail: React.FC<Props> = ({ task, onClose, onUpdate }) => {
                             <p className="text-sm text-gray-500 dark:text-gray-400">{file.size}</p>
                           </div>
                         </div>
-                        <button className="flex items-center gap-2 px-3 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                        <a href={file.url || '#'} download className="flex items-center gap-2 px-3 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
                           <DownloadIcon className="w-4 h-4" />
                           Download
-                        </button>
+                        </a>
                       </div>
                     ))}
                   </div>
                 </div>
               )}
+
+              {/* Upload Documents */}
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Upload Documents</h3>
+                <input 
+                  type="file" 
+                  multiple 
+                  onChange={(e) => setNewFiles(e.target.files)}
+                  className="block w-full text-sm text-gray-700 dark:text-gray-300 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                />
+                {newFiles && newFiles.length > 0 && (
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{newFiles.length} file(s) selected</p>
+                )}
+              </div>
 
               {/* Comments Section */}
               <div>
@@ -253,6 +268,17 @@ const TaskDetail: React.FC<Props> = ({ task, onClose, onUpdate }) => {
                   </div>
                 </div>
               )}
+
+              {/* Participants */}
+              <div className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Participants</h3>
+                <div className="mt-2 flex -space-x-2 mb-2">
+                  {task.participants.map((p, idx) => (
+                    <img key={idx} src={p.avatar} className="w-7 h-7 rounded-full border-2 border-white dark:border-gray-800" alt={p.name} />
+                  ))}
+                </div>
+                <p className="text-sm text-gray-600 dark:text-gray-400">{task.participants.length} member(s) working on this task</p>
+              </div>
             </div>
           </div>
         </div>

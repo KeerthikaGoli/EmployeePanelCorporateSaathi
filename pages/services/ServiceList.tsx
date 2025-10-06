@@ -249,6 +249,17 @@ const ServiceList: React.FC<Props> = ({ onOpenService, onCreateService, onUpdate
                   <span className="truncate">{service.assignee.name}</span>
                 </div>
                 <div className="flex items-center gap-3">
+                  {/* Participants Avatars */}
+                  {service.participants && service.participants.length > 0 && (
+                    <div className="flex -space-x-2">
+                      {service.participants.slice(0,3).map((p, i) => (
+                        <img key={i} src={p.avatar} className="w-5 h-5 rounded-full border-2 border-white dark:border-gray-800" alt={p.name} title={p.name} />
+                      ))}
+                      {service.participants.length > 3 && (
+                        <span className="w-5 h-5 rounded-full bg-gray-200 dark:bg-gray-700 text-[10px] flex items-center justify-center border-2 border-white dark:border-gray-800">+{service.participants.length - 3}</span>
+                      )}
+                    </div>
+                  )}
                   <div className={`flex items-center gap-1 ${dueInfo.urgent ? 'text-red-600 dark:text-red-400' : ''}`}>
                     <CalendarIcon className="w-4 h-4" />
                     <span>{dueInfo.text}</span>

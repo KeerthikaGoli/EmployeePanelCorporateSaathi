@@ -13,6 +13,10 @@ export const mockServices: Service[] = [
       avatar: 'https://picsum.photos/seed/user1/100/100',
       email: 'sarah.j@company.com'
     },
+    participants: [
+      { name: 'Sarah Johnson', avatar: 'https://picsum.photos/seed/user1/100/100', email: 'sarah.j@company.com' },
+      { name: 'John Smith', avatar: 'https://picsum.photos/seed/client1/100/100', email: 'john@techcorp.com' }
+    ],
     client: {
       name: 'John Smith',
       company: 'TechCorp Solutions',
@@ -26,9 +30,9 @@ export const mockServices: Service[] = [
     progress: 38,
     tags: ['Web Development', 'React', 'Node.js', 'Database'],
     files: [
-      { id: 'f1', name: 'project-requirements.pdf', size: '2.4 MB', url: '#', type: 'document' },
-      { id: 'f2', name: 'design-mockups.fig', size: '8.2 MB', url: '#', type: 'image' },
-      { id: 'f3', name: 'database-schema.sql', size: '156 KB', url: '#', type: 'document' }
+      { id: 'f1', name: 'project-requirements.pdf', size: '2.4 MB', url: '#', type: 'document', uploadedBy: 'client' },
+      { id: 'f2', name: 'design-mockups.fig', size: '8.2 MB', url: '#', type: 'image', uploadedBy: 'client' },
+      { id: 'f3', name: 'database-schema.sql', size: '156 KB', url: '#', type: 'document', uploadedBy: 'employee' }
     ],
     comments: [
       { id: 'c1', author: 'John Smith', avatar: 'https://picsum.photos/seed/client1/100/100', content: 'The initial design looks great! Please make sure the mobile responsiveness is perfect.', timestamp: new Date(2025, 9, 3) },
@@ -63,6 +67,9 @@ export const mockServices: Service[] = [
       avatar: 'https://picsum.photos/seed/user2/100/100',
       email: 'mike.c@company.com'
     },
+    participants: [
+      { name: 'Mike Chen', avatar: 'https://picsum.photos/seed/user2/100/100', email: 'mike.c@company.com' }
+    ],
     client: {
       name: 'Lisa Anderson',
       company: 'StartupXYZ',
@@ -76,8 +83,8 @@ export const mockServices: Service[] = [
     progress: 94,
     tags: ['Infrastructure', 'Networking', 'Security', 'Servers'],
     files: [
-      { id: 'f4', name: 'network-diagram.pdf', size: '1.2 MB', url: '#', type: 'document' },
-      { id: 'f5', name: 'security-checklist.xlsx', size: '45 KB', url: '#', type: 'document' }
+      { id: 'f4', name: 'network-diagram.pdf', size: '1.2 MB', url: '#', type: 'document', uploadedBy: 'client' },
+      { id: 'f5', name: 'security-checklist.xlsx', size: '45 KB', url: '#', type: 'document', uploadedBy: 'employee' }
     ],
     comments: [
       { id: 'c3', author: 'Lisa Anderson', avatar: 'https://picsum.photos/seed/client2/100/100', content: 'The network setup is working perfectly. Great job!', timestamp: new Date(2025, 9, 18) }
@@ -111,6 +118,9 @@ export const mockServices: Service[] = [
       avatar: 'https://picsum.photos/seed/user3/100/100',
       email: 'emily.r@company.com'
     },
+    participants: [
+      { name: 'Emily Rodriguez', avatar: 'https://picsum.photos/seed/user3/100/100', email: 'emily.r@company.com' }
+    ],
     client: {
       name: 'David Park',
       company: 'Local Business Inc',
@@ -154,6 +164,9 @@ export const mockServices: Service[] = [
       avatar: 'https://picsum.photos/seed/user4/100/100',
       email: 'alex.t@company.com'
     },
+    participants: [
+      { name: 'Alex Thompson', avatar: 'https://picsum.photos/seed/user4/100/100', email: 'alex.t@company.com' }
+    ],
     client: {
       name: 'Maria Garcia',
       company: 'Enterprise Corp',
@@ -167,8 +180,8 @@ export const mockServices: Service[] = [
     progress: 100,
     tags: ['Training', 'Software', 'Documentation', 'Support'],
     files: [
-      { id: 'f6', name: 'training-materials.pdf', size: '3.1 MB', url: '#', type: 'document' },
-      { id: 'f7', name: 'video-tutorials.zip', size: '125 MB', url: '#', type: 'video' }
+      { id: 'f6', name: 'training-materials.pdf', size: '3.1 MB', url: '#', type: 'document', uploadedBy: 'employee' },
+      { id: 'f7', name: 'video-tutorials.zip', size: '125 MB', url: '#', type: 'video', uploadedBy: 'employee' }
     ],
     comments: [
       { id: 'c4', author: 'Maria Garcia', avatar: 'https://picsum.photos/seed/client3/100/100', content: 'Excellent training program! All our staff are now proficient with the new software.', timestamp: new Date(2025, 9, 12) }
@@ -202,6 +215,9 @@ export const mockServices: Service[] = [
       avatar: 'https://picsum.photos/seed/user5/100/100',
       email: 'david.w@company.com'
     },
+    participants: [
+      { name: 'David Wilson', avatar: 'https://picsum.photos/seed/user5/100/100', email: 'david.w@company.com' }
+    ],
     client: {
       name: 'Jennifer Lee',
       company: 'Retail Solutions',
@@ -215,7 +231,7 @@ export const mockServices: Service[] = [
     progress: 40,
     tags: ['Maintenance', 'Updates', 'Security', 'Performance'],
     files: [
-      { id: 'f8', name: 'maintenance-log.xlsx', size: '32 KB', url: '#', type: 'document' }
+      { id: 'f8', name: 'maintenance-log.xlsx', size: '32 KB', url: '#', type: 'document', uploadedBy: 'employee' }
     ],
     comments: [
       { id: 'c5', author: 'David Wilson', avatar: 'https://picsum.photos/seed/user5/100/100', content: 'Security patches applied successfully. System performance has improved by 15%.', timestamp: new Date(2025, 9, 18) }

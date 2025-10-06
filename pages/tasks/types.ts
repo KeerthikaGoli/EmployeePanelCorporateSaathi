@@ -27,6 +27,11 @@ export interface Task {
     avatar: string;
     email: string;
   };
+  participants: Array<{
+    name: string;
+    avatar: string;
+    email: string;
+  }>;
   dueDate: Date;
   createdDate: Date;
   tags: string[];
